@@ -1,4 +1,4 @@
-name: Build / 构建
+name: Build
 
 on:
   push:
@@ -10,32 +10,30 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read / 只读内容
+  contents: read
 
 jobs:
   build:
-    name: Build Plugin / 构建插件
-    runs-on: ubuntu-latest / 运行环境：Ubuntu 最新版
+    name: Build Plugin
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout / 检出代码
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK 25 / 设置 JDK 25
+      - name: Set up JDK 25
         uses: actions/setup-java@v4
         with:
-          distribution: zulu / 发行版：Zulu
-          java-version: '25' / Java 版本：25
-          cache: maven / 缓存：Maven
+          distribution: zulu
+          java-version: '25'
+          cache: maven
 
-      - name: Build with script / 使用脚本构建
+      - name: Build with script
         run: bash build.sh
 
-      - name: Upload artifacts / 上传产物
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ExcellentEnchants-5.4.5
-          if-no-files-found: error / 未找到文件时报错
           name: ExcellentEnchants-5.4.6
           if-no-files-found: error
           path: |
